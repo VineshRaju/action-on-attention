@@ -22,7 +22,7 @@ class ListAdapter(private val itemsCount: Int) : RecyclerView.Adapter<ListAdapte
         }
 
         fun bind(pos: Int) {
-            itemView.setBackgroundColor(randomColorValues[pos])
+            itemView.setBackgroundColor(randomColorValues[pos % randomColorValues.size])
             itemView.tvText.text = "$pos"
         }
     }
