@@ -20,8 +20,8 @@ class Tracker constructor(private val listener: OnTrackedListener) {
                     RecyclerView.SCROLL_STATE_DRAGGING -> disposable.clear()
                     RecyclerView.SCROLL_STATE_IDLE -> disposable.add(
                             Observable.range((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition(), recyclerView.childCount)
-                                    .skipWhile {
-                                        alreadyTracked.contains(it)
+                                    .filter {
+                                        !alreadyTracked.contains(it)
                                     }
                                     .delay(300, TimeUnit.MILLISECONDS)
                                     .subscribeOn(Schedulers.io())
